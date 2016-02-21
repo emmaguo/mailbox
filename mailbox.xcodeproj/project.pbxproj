@@ -12,6 +12,7 @@
 		7E481CB51C798C5D00999092 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E481CB31C798C5D00999092 /* Main.storyboard */; };
 		7E481CB71C798C5D00999092 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E481CB61C798C5D00999092 /* Assets.xcassets */; };
 		7E481CBA1C798C5D00999092 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E481CB81C798C5D00999092 /* LaunchScreen.storyboard */; };
+		7E481CC21C798E0A00999092 /* MailboxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E481CC11C798E0A00999092 /* MailboxViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		7E481CB61C798C5D00999092 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7E481CB91C798C5D00999092 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7E481CBB1C798C5D00999092 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E481CC11C798E0A00999092 /* MailboxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailboxViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				7E481CAF1C798C5D00999092 /* AppDelegate.swift */,
 				7E481CB11C798C5D00999092 /* ViewController.swift */,
 				7E481CB31C798C5D00999092 /* Main.storyboard */,
+				7E481CC11C798E0A00999092 /* MailboxViewController.swift */,
 				7E481CB61C798C5D00999092 /* Assets.xcassets */,
 				7E481CB81C798C5D00999092 /* LaunchScreen.storyboard */,
 				7E481CBB1C798C5D00999092 /* Info.plist */,
@@ -138,6 +141,7 @@
 			files = (
 				7E481CB21C798C5D00999092 /* ViewController.swift in Sources */,
 				7E481CB01C798C5D00999092 /* AppDelegate.swift in Sources */,
+				7E481CC21C798E0A00999092 /* MailboxViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,6 +289,7 @@
 				7E481CC01C798C5D00999092 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

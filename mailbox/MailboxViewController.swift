@@ -13,6 +13,13 @@ class MailboxViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var feedView: UIImageView!
     @IBOutlet weak var messageView: UIImageView!
+    @IBOutlet weak var laterIcon: UIImageView!
+    @IBOutlet weak var archiveIcon: UIImageView!
+    @IBOutlet weak var deleteIcon: UIImageView!
+    @IBOutlet weak var listIcon: UIImageView!
+    @IBOutlet weak var backgroundColorView: UIView!
+    var messageViewOriginalCenter: CGPoint!
+    var laterIconOriginalCenter: CGPoint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +29,11 @@ class MailboxViewController: UIViewController {
             width: feedView.frame.width,
             height: feedView.frame.height + messageView.frame.height            
         )
+        laterIcon.alpha = 0
+        archiveIcon.alpha = 0
+        deleteIcon.alpha = 0
+        listIcon.alpha = 0
+        backgroundColorView.backgroundColor = UIColor.lightGrayColor()
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,6 +41,27 @@ class MailboxViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func onMessagePan(sender: UIPanGestureRecognizer) {
+        let translation = sender.translationInView(view)
+        
+        if sender.state == UIGestureRecognizerState.Began {
+            messageViewOriginalCenter = messageView.center
+            laterIconOriginalCenter = laterIcon.center
+            
+        } else if sender.state == UIGestureRecognizerState.Changed {
+            messageView.center.x = messageViewOriginalCenter.x + translation.x
+            UIView.animateWithDuration(0.4, animations: {
+                self.laterIcon.alpha = 1
+            })
+            if translation.x < -60 {
+                laterIcon.center.x = laterIconOriginalCenter.x + translation.x + 60
+            }
+
+        } else if sender.state == UIGestureRecognizerState.Ended {
+            messageView.center.x = messageViewOriginalCenter.x
+            laterIcon.center.x = laterIconOriginalCenter.x
+        }
+    }
 
     /*
     // MARK: - Navigation

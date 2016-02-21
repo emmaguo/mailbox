@@ -29,33 +29,74 @@
                                 <rect key="frame" x="0.0" y="161" width="320" height="407"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="message" id="wNF-1y-62O">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="86"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="feed" id="XWT-4A-bkD">
                                         <rect key="frame" x="0.0" y="86" width="320" height="1202"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
+                                    <view contentMode="scaleToFill" id="xDS-kN-T62">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="86"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="later_icon" id="Aay-zH-Eh1">
+                                                <rect key="frame" x="260" y="0.0" width="60" height="85"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </imageView>
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="archive_icon" id="Ald-mB-hwh">
+                                                <rect key="frame" x="33" y="30" width="25" height="25"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </imageView>
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="delete_icon" id="rkl-ba-fM5">
+                                                <rect key="frame" x="58" y="30" width="25" height="25"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </imageView>
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="list_icon" id="DYQ-DC-yN0">
+                                                <rect key="frame" x="219" y="30" width="25" height="25"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </imageView>
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="message" id="wNF-1y-62O">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="86"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="cH4-qt-s7Y" appends="YES" id="4Yb-qQ-OP1"/>
+                                                </connections>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="archiveIcon" destination="Ald-mB-hwh" id="VLA-32-653"/>
+                        <outlet property="backgroundColorView" destination="xDS-kN-T62" id="oud-aY-vXR"/>
+                        <outlet property="deleteIcon" destination="rkl-ba-fM5" id="ATK-QT-zh4"/>
                         <outlet property="feedView" destination="XWT-4A-bkD" id="hCB-2d-lxH"/>
+                        <outlet property="laterIcon" destination="Aay-zH-Eh1" id="bbB-2g-ELx"/>
+                        <outlet property="listIcon" destination="DYQ-DC-yN0" id="fTk-Ek-C5y"/>
                         <outlet property="messageView" destination="wNF-1y-62O" id="kcA-E4-t5o"/>
                         <outlet property="scrollView" destination="mZi-Uy-GWP" id="xIw-NH-PhX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="cH4-qt-s7Y">
+                    <connections>
+                        <action selector="onMessagePan:" destination="BYZ-38-t0r" id="1ok-I6-7ta"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="162" y="347"/>
         </scene>
     </scenes>
     <resources>
+        <image name="archive_icon" width="25" height="25"/>
+        <image name="delete_icon" width="25" height="25"/>
         <image name="feed" width="320" height="1202"/>
         <image name="help_label" width="320" height="37"/>
+        <image name="later_icon" width="25" height="25"/>
+        <image name="list_icon" width="25" height="25"/>
         <image name="message" width="320" height="86"/>
         <image name="nav" width="320" height="65"/>
         <image name="search" width="320" height="42"/>

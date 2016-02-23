@@ -84,63 +84,80 @@ class MailboxViewController: UIViewController {
             
         } else if sender.state == UIGestureRecognizerState.Ended {
             if translation.x < -260 {
-                UIView.animateWithDuration(0.2,
-                    animations: {
-                        () -> Void in
-                        self.messageView.center.x =
-                            self.messageViewOriginalCenter.x - self.messageView.frame.width
-                        self.laterIcon.center.x =
-                            self.laterIconOriginalCenter.x - self.messageView.frame.width + 60
-                    }, completion: {
-                        (Bool) -> Void in
-                        self.listView.alpha = 1
-                    }
-                )
+                continueMessageSlideLeft(listView)
             } else if translation.x < -60 {
-                UIView.animateWithDuration(0.2,
-                    animations: {
-                        () -> Void in
-                        self.messageView.center.x =
-                            self.messageViewOriginalCenter.x - self.messageView.frame.width
-                        self.laterIcon.center.x =
-                            self.laterIconOriginalCenter.x - self.messageView.frame.width + 60
-                    }, completion: {
-                        (Bool) -> Void in
-                        self.rescheduleView.alpha = 1
-                    }
-                )
-            } else if translation.x > 60 { // Same for translation.x > 260
-                UIView.animateWithDuration(0.2,
-                    animations: {
-                        () -> Void in
-                        self.messageView.center.x =
-                            self.messageViewOriginalCenter.x + self.messageView.frame.width
-                        self.archiveIcon.center.x =
-                            self.archiveIconOriginalCenter.x + self.messageView.frame.width - 60
-                    }, completion: {
-                        (Bool) -> Void in
-                        self.hideMessage()
-                    }
-                )
+                continueMessageSlideLeft(rescheduleView)
+            } else if translation.x > 60 {
+                continueMessageSlideRight()
             } else {
-                UIView.animateWithDuration(0.2,
-                    animations: {
-                        () -> Void in
-                        self.messageView.center.x = self.messageViewOriginalCenter.x
-                    }
-                )
+                centerMessage()
             }
         }
+    }
+    
+    // Continue message sliding left to review list view or reschedule view
+    func continueMessageSlideLeft(myview: UIView) {
+        UIView.animateWithDuration(0.2,
+            animations: {
+                () -> Void in
+                self.messageView.center.x =
+                    self.messageViewOriginalCenter.x - self.messageView.frame.width
+                self.laterIcon.center.x =
+                    self.laterIconOriginalCenter.x - self.messageView.frame.width + 60
+            }, completion: {
+                (Bool) -> Void in
+                myview.alpha = 1
+            }
+        )
+    }
+    
+    // Continue message sliding right to dismiss message
+    func continueMessageSlideRight() {
+        UIView.animateWithDuration(0.2,
+            animations: {
+                () -> Void in
+                self.messageView.center.x =
+                    self.messageViewOriginalCenter.x + self.messageView.frame.width
+                self.archiveIcon.center.x =
+                    self.archiveIconOriginalCenter.x + self.messageView.frame.width - 60
+            }, completion: {
+                (Bool) -> Void in
+                self.hideMessage()
+            }
+        )
+    }
+    
+    // Center message animation
+    func centerMessage() {
+        UIView.animateWithDuration(0.2,
+            animations: {
+                () -> Void in
+                self.messageView.center.x = self.messageViewOriginalCenter.x
+            }
+        )
     }
     
     // Hide message animation
     func hideMessage() {
         archiveIcon.alpha = 0
         laterIcon.alpha = 0
-        UIView.animateWithDuration(1,
+        UIView.animateWithDuration(0.7,
             animations: {
                 () -> Void in
                 self.feedView.center.y = self.feedViewOriginalCenter.y - self.messageView.frame.height
+            }
+        )
+    }
+    
+    // Show message animation
+    func showMessage() {
+        messageView.alpha = 1
+        laterIcon.alpha = 1
+        backgroundColorView.backgroundColor = backgroundViewOriginalColor
+        UIView.animateWithDuration(0.5,
+            animations: {
+                () -> Void in
+                self.feedView.center.y = self.feedViewOriginalCenter.y
             }
         )
     }
@@ -154,20 +171,13 @@ class MailboxViewController: UIViewController {
         messageView.alpha = 0
         laterIcon.alpha = 0
         
-        UIView.animateWithDuration(1,
+        UIView.animateWithDuration(0.7,
             animations: {
                 () -> Void in
                 self.feedView.center.y = self.feedViewOriginalCenter.y - self.messageView.frame.height
-            }, completion: { (Bool) -> Void in
-                self.messageView.alpha = 1
-                self.laterIcon.alpha = 1
-                self.backgroundColorView.backgroundColor = self.backgroundViewOriginalColor
-                UIView.animateWithDuration(0.5,
-                    animations: {
-                        () -> Void in
-                        self.feedView.center.y = self.feedViewOriginalCenter.y
-                    }
-                )
+            }, completion: {
+                (Bool) -> Void in
+                self.showMessage()
             }
         )
     }

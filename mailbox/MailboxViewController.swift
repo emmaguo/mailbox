@@ -56,6 +56,7 @@ class MailboxViewController: UIViewController {
  
         } else if sender.state == UIGestureRecognizerState.Changed {
             messageView.center.x = messageViewOriginalCenter.x + translation.x
+            backgroundColorView.backgroundColor = backgroundViewOriginalColor
             
             if translation.x < 0 {
                 archiveIcon.alpha = 0
@@ -72,7 +73,15 @@ class MailboxViewController: UIViewController {
             } else if translation.x < -60 {
                 laterIcon.center.x = laterIconOriginalCenter.x + translation.x + 60
                 backgroundColorView.backgroundColor = UIColor.yellowColor()
+            } else if translation.x > 260 {
+                archiveIcon.image = UIImage(named: "delete_icon")
+                archiveIcon.center.x = archiveIconOriginalCenter.x + translation.x - 60
+                backgroundColorView.backgroundColor = UIColor.redColor()
+            } else if translation.x > 60 {
+                archiveIcon.center.x = archiveIconOriginalCenter.x + translation.x - 60
+                backgroundColorView.backgroundColor = UIColor.greenColor()
             }
+            
         } else if sender.state == UIGestureRecognizerState.Ended {
             if translation.x < -260 {
                 UIView.animateWithDuration(0.2,
@@ -100,6 +109,19 @@ class MailboxViewController: UIViewController {
                         self.rescheduleView.alpha = 1
                     }
                 )
+            } else if translation.x > 60 { // Same for translation.x > 260
+                UIView.animateWithDuration(0.2,
+                    animations: {
+                        () -> Void in
+                        self.messageView.center.x =
+                            self.messageViewOriginalCenter.x + self.messageView.frame.width
+                        self.archiveIcon.center.x =
+                            self.archiveIconOriginalCenter.x + self.messageView.frame.width - 60
+                    }, completion: {
+                        (Bool) -> Void in
+                        self.hideMessage()
+                    }
+                )
             } else {
                 UIView.animateWithDuration(0.2,
                     animations: {
@@ -109,6 +131,18 @@ class MailboxViewController: UIViewController {
                 )
             }
         }
+    }
+    
+    // Hide message animation
+    func hideMessage() {
+        archiveIcon.alpha = 0
+        laterIcon.alpha = 0
+        UIView.animateWithDuration(1,
+            animations: {
+                () -> Void in
+                self.feedView.center.y = self.feedViewOriginalCenter.y - self.messageView.frame.height
+            }
+        )
     }
 
     @IBAction func onDismissButton(sender: UIButton) {
@@ -124,7 +158,7 @@ class MailboxViewController: UIViewController {
             animations: {
                 () -> Void in
                 self.feedView.center.y = self.feedViewOriginalCenter.y - self.messageView.frame.height
-            }) { (Bool) -> Void in
+            }, completion: { (Bool) -> Void in
                 self.messageView.alpha = 1
                 self.laterIcon.alpha = 1
                 self.backgroundColorView.backgroundColor = self.backgroundViewOriginalColor
@@ -134,7 +168,8 @@ class MailboxViewController: UIViewController {
                         self.feedView.center.y = self.feedViewOriginalCenter.y
                     }
                 )
-        }
+            }
+        )
     }
 
     /*

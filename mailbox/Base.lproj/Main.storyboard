@@ -29,10 +29,6 @@
                                 <rect key="frame" x="0.0" y="161" width="320" height="407"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="feed" id="XWT-4A-bkD">
-                                        <rect key="frame" x="0.0" y="86" width="320" height="1202"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
                                     <view contentMode="scaleToFill" id="xDS-kN-T62">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="86"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -51,6 +47,10 @@
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="cH4-qt-s7Y" appends="YES" id="4Yb-qQ-OP1"/>
                                         </connections>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="feed" id="XWT-4A-bkD">
+                                        <rect key="frame" x="0.0" y="86" width="320" height="1202"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
                             </scrollView>

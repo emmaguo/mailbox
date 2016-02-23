@@ -105,10 +105,27 @@ class MailboxViewController: UIViewController {
     @IBAction func onDismissButton(sender: UIButton) {
         listView.alpha = 0
         rescheduleView.alpha = 0
-        messageView.center = messageViewOriginalCenter
         laterIcon.center = laterIconOriginalCenter
         laterIcon.image = UIImage(named: "later_icon")
-        backgroundColorView.backgroundColor = backgroundViewOriginalColor
+        messageView.center = messageViewOriginalCenter
+        messageView.alpha = 0
+        laterIcon.alpha = 0
+        
+        UIView.animateWithDuration(1,
+            animations: {
+                () -> Void in
+                self.feedView.center.y = self.feedViewOriginalCenter.y - self.messageView.frame.height
+            }) { (Bool) -> Void in
+                self.messageView.alpha = 1
+                self.laterIcon.alpha = 1
+                self.backgroundColorView.backgroundColor = self.backgroundViewOriginalColor
+                UIView.animateWithDuration(0.5,
+                    animations: {
+                        () -> Void in
+                        self.feedView.center.y = self.feedViewOriginalCenter.y
+                    }
+                )
+        }
     }
 
     /*

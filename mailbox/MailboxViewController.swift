@@ -24,6 +24,7 @@ class MailboxViewController: UIViewController {
     var messageViewOriginalCenter: CGPoint!
     var feedViewOriginalCenter: CGPoint!
     var laterIconOriginalCenter: CGPoint!
+    var backgroundViewOriginalColor: UIColor!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,14 +32,12 @@ class MailboxViewController: UIViewController {
         // Do any additional setup after loading the view.
         scrollView.contentSize = CGSize(
             width: feedView.frame.width,
-            height: feedView.frame.height + messageView.frame.height            
+            height: feedView.frame.height + messageView.frame.height
         )
-        laterIcon.alpha = 0
-        archiveIcon.alpha = 0
-        deleteIcon.alpha = 0
-        listIcon.alpha = 0
-        backgroundColorView.alpha = 0
-        backgroundColorView.backgroundColor = UIColor.lightGrayColor()
+        feedViewOriginalCenter = feedView.center
+        messageViewOriginalCenter = messageView.center
+        laterIconOriginalCenter = laterIcon.center
+        backgroundViewOriginalColor = backgroundColorView.backgroundColor
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,45 +50,24 @@ class MailboxViewController: UIViewController {
         
         if sender.state == UIGestureRecognizerState.Began {
             backgroundColorView.alpha = 0
-            backgroundColorView.backgroundColor = UIColor.lightGrayColor()
-            feedViewOriginalCenter = feedView.center
-            messageViewOriginalCenter = messageView.center
-            laterIconOriginalCenter = laterIcon.center
-            laterIcon.alpha = 1
- 
-        } else if sender.state == UIGestureRecognizerState.Changed {
-            messageView.center.x = messageViewOriginalCenter.x + translation.x
             UIView.animateWithDuration(0.5, animations: {
                 self.backgroundColorView.alpha = 1
             })
-            if translation.x < -260 {
-                laterIcon.alpha = 0
-                listIcon.alpha = 1
-                listIcon.center.x = laterIconOriginalCenter.x + translation.x + 260
-                backgroundColorView.backgroundColor = UIColor.brownColor()
-            } else if translation.x < -60 {
+ 
+        } else if sender.state == UIGestureRecognizerState.Changed {
+            messageView.center.x = messageViewOriginalCenter.x + translation.x
+            if translation.x < -60 {
                 laterIcon.center.x = laterIconOriginalCenter.x + translation.x + 60
                 backgroundColorView.backgroundColor = UIColor.yellowColor()
             }
 
         } else if sender.state == UIGestureRecognizerState.Ended {
-            if translation.x < -260 {
+            if translation.x < -60 {
                 UIView.animateWithDuration(0.2,
                     animations: {
                         () -> Void in
-                        self.messageView.center.x = self.messageViewOriginalCenter.x - self.messageView.frame.width
-                        self.listIcon.alpha = 0
-                    }, completion: {
-                        (Bool) -> Void in
-                        self.listView.alpha = 1
-                    }
-                )
-            } else if translation.x < -60 {
-                UIView.animateWithDuration(0.2,
-                    animations: {
-                        () -> Void in
-                        self.messageView.center.x = self.messageViewOriginalCenter.x - self.messageView.frame.width
-                        self.laterIcon.alpha = 0
+                        self.messageView.center.x =
+                            self.messageViewOriginalCenter.x - self.messageView.frame.width
                     }, completion: {
                         (Bool) -> Void in
                         self.rescheduleView.alpha = 1
@@ -102,7 +80,9 @@ class MailboxViewController: UIViewController {
     @IBAction func onDismissButton(sender: UIButton) {
         listView.alpha = 0
         rescheduleView.alpha = 0
-        messageView.center.x = messageViewOriginalCenter.x
+        messageView.center = messageViewOriginalCenter
+        laterIcon.center = laterIconOriginalCenter
+        backgroundColorView.backgroundColor = backgroundViewOriginalColor
     }
 
     /*

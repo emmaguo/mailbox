@@ -41,10 +41,6 @@
                                                 <rect key="frame" x="260" y="0.0" width="60" height="85"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </imageView>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="list_icon" id="DYQ-DC-yN0">
-                                                <rect key="frame" x="219" y="30" width="25" height="25"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                            </imageView>
                                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="archive_icon" id="Ald-mB-hwh">
                                                 <rect key="frame" x="33" y="30" width="25" height="25"/>
                                                 <autoresizingMask key="autoresizingMask"/>
@@ -74,7 +70,7 @@
                                 <rect key="frame" x="0.0" y="515" width="320" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="onDismissButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="j1z-3f-6CO"/>
+                                    <action selector="onDismissButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y60-AL-N8O"/>
                                 </connections>
                             </button>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="center" image="list" id="fwu-5G-ur4">
@@ -91,7 +87,6 @@
                         <outlet property="dismissButton" destination="BGg-1T-8nd" id="PCu-zx-NUg"/>
                         <outlet property="feedView" destination="XWT-4A-bkD" id="hCB-2d-lxH"/>
                         <outlet property="laterIcon" destination="Aay-zH-Eh1" id="bbB-2g-ELx"/>
-                        <outlet property="listIcon" destination="DYQ-DC-yN0" id="fTk-Ek-C5y"/>
                         <outlet property="listView" destination="fwu-5G-ur4" id="6s6-OY-k3w"/>
                         <outlet property="messageView" destination="wNF-1y-62O" id="kcA-E4-t5o"/>
                         <outlet property="rescheduleView" destination="USc-vr-ist" id="pLC-hj-FzE"/>
@@ -115,7 +110,6 @@
         <image name="help_label" width="320" height="37"/>
         <image name="later_icon" width="25" height="25"/>
         <image name="list" width="320" height="568"/>
-        <image name="list_icon" width="25" height="25"/>
         <image name="message" width="320" height="86"/>
         <image name="nav" width="320" height="65"/>
         <image name="reschedule" width="320" height="568"/>

@@ -16,7 +16,6 @@ class MailboxViewController: UIViewController {
     @IBOutlet weak var laterIcon: UIImageView!
     @IBOutlet weak var archiveIcon: UIImageView!
     @IBOutlet weak var deleteIcon: UIImageView!
-    @IBOutlet weak var listIcon: UIImageView!
     @IBOutlet weak var backgroundColorView: UIView!
     @IBOutlet weak var rescheduleView: UIImageView!
     @IBOutlet weak var listView: UIImageView!
@@ -56,13 +55,28 @@ class MailboxViewController: UIViewController {
  
         } else if sender.state == UIGestureRecognizerState.Changed {
             messageView.center.x = messageViewOriginalCenter.x + translation.x
-            if translation.x < -60 {
+            if translation.x < -260 {
+                laterIcon.image = UIImage(named: "list_icon")
+                laterIcon.center.x = laterIconOriginalCenter.x + translation.x + 60
+                backgroundColorView.backgroundColor = UIColor.brownColor()
+            } else if translation.x < -60 {
                 laterIcon.center.x = laterIconOriginalCenter.x + translation.x + 60
                 backgroundColorView.backgroundColor = UIColor.yellowColor()
             }
 
         } else if sender.state == UIGestureRecognizerState.Ended {
-            if translation.x < -60 {
+            if translation.x < -260 {
+                UIView.animateWithDuration(0.2,
+                    animations: {
+                        () -> Void in
+                        self.messageView.center.x =
+                            self.messageViewOriginalCenter.x - self.messageView.frame.width
+                    }, completion: {
+                        (Bool) -> Void in
+                        self.listView.alpha = 1
+                    }
+                )
+            } else if translation.x < -60 {
                 UIView.animateWithDuration(0.2,
                     animations: {
                         () -> Void in

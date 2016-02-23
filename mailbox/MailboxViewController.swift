@@ -19,11 +19,13 @@ class MailboxViewController: UIViewController {
     @IBOutlet weak var rescheduleView: UIImageView!
     @IBOutlet weak var listView: UIImageView!
     @IBOutlet weak var dismissButton: UIButton!
+    @IBOutlet weak var mainView: UIView!
     var messageViewOriginalCenter: CGPoint!
     var feedViewOriginalCenter: CGPoint!
     var laterIconOriginalCenter: CGPoint!
     var archiveIconOriginalCenter: CGPoint!
     var backgroundViewOriginalColor: UIColor!
+    var edgeGesture: UIScreenEdgePanGestureRecognizer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,11 +40,40 @@ class MailboxViewController: UIViewController {
         laterIconOriginalCenter = laterIcon.center
         archiveIconOriginalCenter = archiveIcon.center
         backgroundViewOriginalColor = backgroundColorView.backgroundColor
+        
+        // Add EdgePanGestureRecognizer
+        edgeGesture = UIScreenEdgePanGestureRecognizer(target: self, action: "onEdgePan:")
+        edgeGesture.edges = UIRectEdge.Left
+        mainView.addGestureRecognizer(edgeGesture)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func onEdgePan(sender: UIScreenEdgePanGestureRecognizer) {
+        let translation = sender.translationInView(view)
+        
+        if sender.state == UIGestureRecognizerState.Changed {
+            mainView.center.x = feedViewOriginalCenter.x + translation.x
+            
+        } else if sender.state == UIGestureRecognizerState.Ended {
+            let velocity = sender.velocityInView(view)
+            if velocity.x > 0 {
+                // Menu is being revealed
+                UIView.animateWithDuration(0.4, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options:[] , animations: { () -> Void in
+                        self.mainView.center.x = self.feedViewOriginalCenter.x + self.view.frame.width - 50
+                    }, completion: nil
+                )
+            } else {
+                // Menu is being hidden
+                UIView.animateWithDuration(0.4, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options:[] , animations: { () -> Void in
+                        self.mainView.center.x = self.feedViewOriginalCenter.x
+                    }, completion: nil
+                )
+            }
+        }
     }
     
     @IBAction func onMessagePan(sender: UIPanGestureRecognizer) {

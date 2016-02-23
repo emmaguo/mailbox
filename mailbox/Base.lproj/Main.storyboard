@@ -41,14 +41,6 @@
                                                 <rect key="frame" x="260" y="0.0" width="60" height="85"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </imageView>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="archive_icon" id="Ald-mB-hwh">
-                                                <rect key="frame" x="33" y="30" width="25" height="25"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                            </imageView>
-                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="delete_icon" id="rkl-ba-fM5">
-                                                <rect key="frame" x="58" y="30" width="25" height="25"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
@@ -62,6 +54,10 @@
                                     </imageView>
                                 </subviews>
                             </scrollView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="center" image="list" id="fwu-5G-ur4">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
                             <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reschedule" id="USc-vr-ist">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -73,17 +69,11 @@
                                     <action selector="onDismissButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y60-AL-N8O"/>
                                 </connections>
                             </button>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="center" image="list" id="fwu-5G-ur4">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="archiveIcon" destination="Ald-mB-hwh" id="VLA-32-653"/>
                         <outlet property="backgroundColorView" destination="xDS-kN-T62" id="oud-aY-vXR"/>
-                        <outlet property="deleteIcon" destination="rkl-ba-fM5" id="ATK-QT-zh4"/>
                         <outlet property="dismissButton" destination="BGg-1T-8nd" id="PCu-zx-NUg"/>
                         <outlet property="feedView" destination="XWT-4A-bkD" id="hCB-2d-lxH"/>
                         <outlet property="laterIcon" destination="Aay-zH-Eh1" id="bbB-2g-ELx"/>
@@ -104,8 +94,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="archive_icon" width="25" height="25"/>
-        <image name="delete_icon" width="25" height="25"/>
         <image name="feed" width="320" height="1202"/>
         <image name="help_label" width="320" height="37"/>
         <image name="later_icon" width="25" height="25"/>

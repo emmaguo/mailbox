@@ -71,6 +71,8 @@ class MailboxViewController: UIViewController {
                         () -> Void in
                         self.messageView.center.x =
                             self.messageViewOriginalCenter.x - self.messageView.frame.width
+                        self.laterIcon.center.x =
+                            self.laterIconOriginalCenter.x - self.messageView.frame.width + 60
                     }, completion: {
                         (Bool) -> Void in
                         self.listView.alpha = 1
@@ -82,9 +84,18 @@ class MailboxViewController: UIViewController {
                         () -> Void in
                         self.messageView.center.x =
                             self.messageViewOriginalCenter.x - self.messageView.frame.width
+                        self.laterIcon.center.x =
+                            self.laterIconOriginalCenter.x - self.messageView.frame.width + 60
                     }, completion: {
                         (Bool) -> Void in
                         self.rescheduleView.alpha = 1
+                    }
+                )
+            } else {
+                UIView.animateWithDuration(0.2,
+                    animations: {
+                        () -> Void in
+                        self.messageView.center.x = self.messageViewOriginalCenter.x
                     }
                 )
             }
@@ -96,6 +107,7 @@ class MailboxViewController: UIViewController {
         rescheduleView.alpha = 0
         messageView.center = messageViewOriginalCenter
         laterIcon.center = laterIconOriginalCenter
+        laterIcon.image = UIImage(named: "later_icon")
         backgroundColorView.backgroundColor = backgroundViewOriginalColor
     }
 

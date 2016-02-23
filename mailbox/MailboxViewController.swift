@@ -15,7 +15,6 @@ class MailboxViewController: UIViewController {
     @IBOutlet weak var messageView: UIImageView!
     @IBOutlet weak var laterIcon: UIImageView!
     @IBOutlet weak var archiveIcon: UIImageView!
-    @IBOutlet weak var deleteIcon: UIImageView!
     @IBOutlet weak var backgroundColorView: UIView!
     @IBOutlet weak var rescheduleView: UIImageView!
     @IBOutlet weak var listView: UIImageView!
@@ -23,6 +22,7 @@ class MailboxViewController: UIViewController {
     var messageViewOriginalCenter: CGPoint!
     var feedViewOriginalCenter: CGPoint!
     var laterIconOriginalCenter: CGPoint!
+    var archiveIconOriginalCenter: CGPoint!
     var backgroundViewOriginalColor: UIColor!
     
     override func viewDidLoad() {
@@ -36,6 +36,7 @@ class MailboxViewController: UIViewController {
         feedViewOriginalCenter = feedView.center
         messageViewOriginalCenter = messageView.center
         laterIconOriginalCenter = laterIcon.center
+        archiveIconOriginalCenter = archiveIcon.center
         backgroundViewOriginalColor = backgroundColorView.backgroundColor
     }
 
@@ -55,6 +56,15 @@ class MailboxViewController: UIViewController {
  
         } else if sender.state == UIGestureRecognizerState.Changed {
             messageView.center.x = messageViewOriginalCenter.x + translation.x
+            
+            if translation.x < 0 {
+                archiveIcon.alpha = 0
+                laterIcon.alpha = 1
+            } else {
+                archiveIcon.alpha = 1
+                laterIcon.alpha = 0
+            }
+            
             if translation.x < -260 {
                 laterIcon.image = UIImage(named: "list_icon")
                 laterIcon.center.x = laterIconOriginalCenter.x + translation.x + 60
@@ -63,7 +73,6 @@ class MailboxViewController: UIViewController {
                 laterIcon.center.x = laterIconOriginalCenter.x + translation.x + 60
                 backgroundColorView.backgroundColor = UIColor.yellowColor()
             }
-
         } else if sender.state == UIGestureRecognizerState.Ended {
             if translation.x < -260 {
                 UIView.animateWithDuration(0.2,

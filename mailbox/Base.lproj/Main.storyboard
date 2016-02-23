@@ -37,6 +37,10 @@
                                                 <rect key="frame" x="260" y="0.0" width="60" height="85"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </imageView>
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="archive_icon" id="oAm-D8-IvQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="60" height="85"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
@@ -73,6 +77,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="archiveIcon" destination="oAm-D8-IvQ" id="fv4-Qz-9SQ"/>
                         <outlet property="backgroundColorView" destination="xDS-kN-T62" id="oud-aY-vXR"/>
                         <outlet property="dismissButton" destination="BGg-1T-8nd" id="PCu-zx-NUg"/>
                         <outlet property="feedView" destination="XWT-4A-bkD" id="hCB-2d-lxH"/>
@@ -94,6 +99,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="archive_icon" width="25" height="25"/>
         <image name="feed" width="320" height="1202"/>
         <image name="help_label" width="320" height="37"/>
         <image name="later_icon" width="25" height="25"/>
